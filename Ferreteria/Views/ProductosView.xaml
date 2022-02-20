@@ -1,0 +1,55 @@
+﻿<Window x:Class="Ferreteria.Views.ProductosView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Ferreteria.ViewModels"
+        mc:Ignorable="d"
+        Title="ProductosView" Height="450" Width="800" Background="White">
+
+    <Window.DataContext>
+        <vm:ProductosViewModel></vm:ProductosViewModel>
+    </Window.DataContext>
+    <DockPanel>
+        <!--<Label DockPanel.Dock="Top" Background="Yellow" Foreground="Blue" FontSize="20" Margin="10,10,10,0" FontWeight="DemiBold" HorizontalContentAlignment="Center">Coppel &#128273;</Label>-->
+        <WrapPanel DockPanel.Dock="Top">
+            <Image Source="https://dominiomedios.com/wp-content/uploads/2016/05/famsa-682x351.jpg"   MaxWidth="200" Height="100" Stretch="UniformToFill" ></Image>
+            <Label Foreground="#2d3277" VerticalAlignment="Center" FontSize="40" FontWeight="DemiBold" Margin="10,0,0,0">inventario de productos</Label>
+        </WrapPanel>
+        
+        <WrapPanel DockPanel.Dock="Bottom">
+            <WrapPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="FontSize" Value="15"></Setter>
+                    <Setter Property="Margin" Value="10"></Setter>
+                    <Setter Property="Width" Value="80"></Setter>
+                    <Setter Property="Background" Value="Blue"></Setter>
+                    <Setter Property="Foreground" Value="White"></Setter>
+                </Style>
+            </WrapPanel.Resources>
+            <Button Command="{Binding VerAgregarCommand}">Agregar</Button>
+            <Button Command="{Binding VerEditarCommand}" CommandParameter="{Binding ElementName=DtgProductos, Path=SelectedItem}">Editar</Button>
+            <Button Command="{Binding EliminarCommand}" CommandParameter="{Binding ElementName=DtgProductos, Path=SelectedItem}">Eliminar</Button>
+            <Button Command="{Binding }" Width="140">Generar Reporte</Button>
+            <TextBlock Text="{Binding Error}" Margin="20,0,0,0" Foreground="Red" FontSize="15"></TextBlock>
+
+        </WrapPanel>
+        <DataGrid Margin="10,5,10,10" AutoGenerateColumns="False" x:Name="DtgProductos" VerticalGridLinesBrush="LightGray" Foreground="Black"
+                  HorizontalGridLinesBrush="Black" RowBackground="White" AlternatingRowBackground="#C4C8DF" ItemsSource="{Binding Productos}" SelectedItem="{Binding Producto}" CanUserAddRows="False" IsReadOnly="True">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="FontSize" Value="14"></Setter>
+                    <Setter Property="Background" Value="Blue"></Setter>
+                    <Setter Property="Foreground" Value="White"></Setter>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Marca }" Header="Marca" Width=".1*"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding  Nombre}" Header="Nombre" Width=".2*" ></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Descripcion }" Header="Descripcion" Width=".1*" ></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding  Precio}" Header="Precio" Width=".1*" ></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding  IdSeccionNavigation.Nombre}" Header="Seccion" Width=".1*" ></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>
