@@ -22,6 +22,14 @@
             <Image Source="https://dominiomedios.com/wp-content/uploads/2016/05/famsa-682x351.jpg"   MaxWidth="200" Height="100" Stretch="UniformToFill" ></Image>
             <Label Foreground="#2d3277" VerticalAlignment="Center" FontSize="40" FontWeight="DemiBold" Margin="10,0,0,0">inventario de productos</Label>
         </WrapPanel>
+
+        <Menu DockPanel.Dock="Top" Margin="10,0,0,0" >
+            <MenuItem Header="Reportes">
+                <MenuItem Header="Productos entre $500 y $1000" Command="{Binding VerProductosEntre500y1000}"></MenuItem>
+                <MenuItem Header="Productos menor al precio promedio" Command="{Binding VerProductosMenorAlPrmedio}"></MenuItem>
+                <MenuItem Header="DepartamentosOrdenados" Command="{Binding VerDepartamentosOrdenados}"></MenuItem>
+            </MenuItem>
+        </Menu>
         
         <WrapPanel DockPanel.Dock="Bottom">
             <WrapPanel.Resources>

@@ -1,12 +1,56 @@
 ﻿<Window x:Class="Ferreteria.Views.DepartamentosOrdenadosView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:hlp="clr-namespace:Ferreteria.Helpers"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:vm="clr-namespace:Ferreteria.ViewModels"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ferreteria.Views"
         mc:Ignorable="d"
-        Title="DepartamentosOrdenadosView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="DepartamentosOrdenadosView" Height="574.5" Width="300">
+
+    <Window.DataContext>
+        <vm:ViewsViewModel></vm:ViewsViewModel>
+    </Window.DataContext>
+    
+    <Window.Resources>
+        <hlp:NullToMarcaConverter x:Key="NTMC"></hlp:NullToMarcaConverter>
+    </Window.Resources>
+
+    <DockPanel>
+        <!--<Label DockPanel.Dock="Top" Background="Yellow" Foreground="Blue" FontSize="20" Margin="10,10,10,0" FontWeight="DemiBold" HorizontalContentAlignment="Center">Coppel &#128273;</Label>-->
+        <WrapPanel DockPanel.Dock="Top">
+            <Image Source="https://dominiomedios.com/wp-content/uploads/2016/05/famsa-682x351.jpg"   MaxWidth="200" Height="100" Stretch="UniformToFill" Margin="50,0,0,0" HorizontalAlignment="Center"></Image>
+            <Label Foreground="#2d3277" VerticalAlignment="Center" FontSize="35" FontWeight="DemiBold" Margin="10,0,0,0">departamentos</Label>
+        </WrapPanel>
+
+        <WrapPanel DockPanel.Dock="Bottom">
+            <WrapPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="FontSize" Value="15"></Setter>
+                    <Setter Property="Margin" Value="70,10,10,10"></Setter>
+                    <Setter Property="Width" Value="80"></Setter>
+                    <Setter Property="Background" Value="Blue"></Setter>
+                    <Setter Property="Foreground" Value="White"></Setter>
+                </Style>
+            </WrapPanel.Resources>
+
+            <Button IsCancel="True" HorizontalAlignment="Center" Width="140">Regresar</Button>
+
+        </WrapPanel>
+        <DataGrid Margin="10,5,10,10" AutoGenerateColumns="False" x:Name="DtgProductos" VerticalGridLinesBrush="LightGray" Foreground="Black"
+                  HorizontalGridLinesBrush="Black" RowBackground="White" AlternatingRowBackground="#C4C8DF" ItemsSource="{Binding DepartamentosOrdenados}"  CanUserAddRows="False" IsReadOnly="True">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="FontSize" Value="14"></Setter>
+                    <Setter Property="Background" Value="Blue"></Setter>
+                    <Setter Property="Foreground" Value="White"></Setter>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Binding="{Binding  Nombre}" Header="Nombre" Width=".2*" ></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
 </Window>

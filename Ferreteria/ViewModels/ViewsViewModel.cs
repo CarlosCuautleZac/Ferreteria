@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ferreteria.ViewModels
 {
-    class ViewsViewModel
+    public class ViewsViewModel
     {
         ViewsRepository viewsrepository = new();
 

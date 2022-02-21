@@ -23,6 +23,10 @@ namespace Ferreteria.ViewModels
         public ICommand AgregarCommand { get; set; }
         public ICommand EditarCommand { get; set; }
         public ICommand EliminarCommand { get; set; }
+        public ICommand VerProductosMenorAlPrmedio { get; set; }
+        public ICommand VerProductosEntre500y1000 { get; set; }
+        public ICommand VerDepartamentosOrdenados { get; set; }
+
 
 
         public ProductoRepository repository = new();
@@ -40,6 +44,9 @@ namespace Ferreteria.ViewModels
 
         public AgregarProductosView agregarview;
         public EditarView editarview;
+        public DepartamentosOrdenadosView departamentosordenados;
+        public MenorAlPromedioView menoralpromedioview;
+        public ProductosEntre500y1000View productosEntre500Y1000View;
 
         private Producto producto;
 
@@ -66,9 +73,31 @@ namespace Ferreteria.ViewModels
             VerEditarCommand = new RelayCommand(VerEditar);
             EditarCommand = new RelayCommand(Editar);
             EliminarCommand = new RelayCommand(Eliminar);
+            VerProductosMenorAlPrmedio = new RelayCommand(VerProductosMenorPrmedio);
+            VerProductosEntre500y1000 = new RelayCommand(ProductosEntre500y1000);
+            VerDepartamentosOrdenados = new RelayCommand(DepartamentosOrdenados);
+
 
             Productos = new(repository.GetAllProductos());
             Secciones = new(SR.GetAllSecciones());
+        }
+
+        private void DepartamentosOrdenados()
+        {
+            departamentosordenados = new();
+            departamentosordenados.ShowDialog();
+        }
+
+        private void ProductosEntre500y1000()
+        {
+            productosEntre500Y1000View = new();
+            productosEntre500Y1000View.ShowDialog();
+        }
+
+        private void VerProductosMenorPrmedio()
+        {
+            menoralpromedioview = new();
+            menoralpromedioview.ShowDialog();
         }
 
         private void Eliminar()
